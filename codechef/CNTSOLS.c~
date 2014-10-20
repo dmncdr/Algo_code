@@ -1,0 +1,41 @@
+#include<iostream>
+#include<cstdio>
+using namespace std;
+long long int mod;
+long long int power(long long int  a,long long int b) {if(b==0) return 1; long long int d=power(a,b/2)%mod; return (((d*d)%mod)*((b&1?a:1)%mod))%mod;} 
+
+int main(){
+			int t;
+			while(t--){
+			
+			long long int up,d,m;
+			cin>>up>>d>>m>>mod;
+			int i=0;
+			long long int arr[41];
+			
+			
+			if(up<=40)		
+			for(i=0;i<=up;i++)
+			  farr[power(i,m)%mod]+=up/(mod);
+			else 		
+				for(i=0;i<=39;i++)
+			  farr[power(i,m)%mod]+=up/(mod);
+
+
+		int j=0,k=0;
+		long long int ans=0;
+				for(i=0;i<mod;i++)
+				for(j=0;j<mod;j++)
+				for(k=0;l<mod;k++)
+				if(((i%mod+j%mod+k%mod)%mod)==m)
+					ans+=farr[i]*farr[j]*farr[k];
+				cout<<ans<<endl;
+				}
+		return 0;
+		}
+                                
+                                
+				
+				
+				
+		

@@ -1,0 +1,66 @@
+    #include<cstdio>
+    #include<cstdlib>
+    #include<map>
+    using namespace std;
+    typedef long long int lli;
+    struct music {
+    lli band;
+    lli length;
+    };
+    int comp(const void *a,const void *b) {
+    return ((struct music*)a)->length-((struct music*)b)->length;
+    }
+    #define getcx getchar_unlocked
+    void inp(lli* n )//fast input function
+    {
+    *n=0;
+    int ch=getcx();
+    int sign=1;
+    while( ch < '0' || ch > '9' )
+    {
+    if(ch=='-')
+    sign=-1;
+    ch=getcx();
+    }
+    while( ch >= '0' && ch <= '9' )
+    {
+    *n = ((*n)<<3)+((*n)<<1) + ch-'0', ch=getcx();
+    }
+    *n=(*n)*sign;
+    }
+    main() {
+    lli num,i,count,t;
+    lli sum,max;
+    struct music arr[100000];
+    inp(&t);
+    while(t--) {
+    inp(&num);
+    for(i=0;i<num;++i) {
+    inp(&arr[i].band);
+    inp(&arr[i].length);
+    }
+    qsort(arr,num,sizeof(struct music),comp);
+    sum=0;
+    or(i=0;i<num;++i)
+    sum+=arr[i].length;
+    count=0;
+    max=0;
+    // for(i=0;i<100001;++i)
+    // seen[i]=0;
+    map<lli,int> seen;
+    for(i=0;i<num;++i)		 {
+    if(!seen[arr[i].band]) {
+    seen[arr[i].band]=1;
+    ++count;
+    sum-=arr[i].length;
+    max+=arr[i].length*count;
+    }
+    }
+    max+=sum*count;
+    printf("%lld\n",max);
+    }
+    // printf("%d %d\n",arr[i].band,arr[i].length);
+    return 0;
+    } 
+				
+				

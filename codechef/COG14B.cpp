@@ -1,0 +1,25 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>	
+using namespace std;
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		int n;
+		cin>>n;
+		vector< pair< int,int> > vec;
+		int i=0;
+		for(i=0;i<n;i++){ int x,y; cin>>x>>y; vec.push_back(make_pair(y,x));}
+		sort(vec.begin(),vec.end());
+		int cnt=1,j=0;
+		
+		for(i=1;i<n;i++){
+			if(vec[i].second<=vec[j].first) cnt++;
+			else j=i;
+		}
+		cout<<cnt<<endl;
+	}
+	return 0;
+}
+		

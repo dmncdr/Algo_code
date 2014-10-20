@@ -1,0 +1,68 @@
+#include<iostream>
+#include<cstdio>
+#include<vector>
+using namespace std;
+int hash[21][20002],hi[21][21];
+int main(){
+	int n,k;
+	scanf("%d%d",&n,&k);
+	int i=0,j=0;
+	
+	int si[21];
+	for(i=0;i<k;i++){
+		 scanf("%d",&si[i]);
+		for(j=0;j<si[i];j++){
+			int x;
+			scanf("%d",&x);
+			hash[i][x]++;
+		}
+	}
+	
+	int jj=0;	
+	for(i=0;i<k;i++){
+		int tmp=0;
+		for(j=0;j<k;j++){
+			if(i!=j){
+				int cnt=0;
+				for(jj=1;jj<=n;jj++){ 
+					if(hash[i][jj]>0 && hash[j][jj]>0)
+						break;
+					else cnt++;
+				}
+				//cout<<"cnt"<<cnt<<endl;
+				if(cnt==n){ tmp++; hi[i][j]++;}
+			}
+		}
+	//	if(ans<tmp) ans=tmp;
+	}
+/*	
+	for(i=0;i<k;i++) {
+		for(j=0;j<k;j++) cout<<hi[i][j]<<" ";
+		cout<<endl;
+	}
+	*/
+int mask=0,ans=-999999;
+	for(mask=0;mask<(1<<k);mask++)
+	{//	cout<<"toto"<<endl;
+		int flag=0;
+		vector<int> vec;
+		//memset(hh,0,sizeof(hh));	
+		int cnt=0,bit=0;
+		for(int item=0;item<k;item++){
+			if(mask&(1<<item)){
+				bit++;
+				vec.push_back(item);
+			}
+		}
+			vector<int>::iterator it,ip;
+			for(it=vec.begin();it!=vec.end();it++){
+				for(ip=it+1;ip!=vec.end();ip++){
+					if(hi[*it][*ip]==0 && ip!=it) { flag=1;break;}
+				}
+				if(flag==1) break;
+			}
+		if((ans<bit) && (flag==0)) ans=bit;
+	}
+	printf("%d\n",ans);
+	return 0;
+}

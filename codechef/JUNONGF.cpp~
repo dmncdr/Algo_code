@@ -1,0 +1,87 @@
+#include<stdio.h>
+#include<iostream>
+#include<algorithm>
+#include<cmath>
+#include<vector>
+#include<cstdlib>
+#include<stack>
+#include<queue>
+#include<string>
+#include<cstring>
+#include<set>
+#include<map>
+#include<utility>
+ 
+#define PR(x) cout<<#x<<"="<<x<<endl
+#define READ2(x,y) scanf("%d %d",&x,&y)
+#define REP(i,a) for(int i=0;i<a;i++)
+#define READ(x) cin>>x
+#define PRARR(x,n) for(int i=0;i<n;i++)printf(#x"[%d]=\t%d\n",i,x[i])
+#define rd(arr,i,n) for(int i=0;i<n;i++) cin>>arr[i]
+#define PB push_back
+#define SUM(arr,n,sum) {sum=0;for(int i=0;i<n;i++) sum+=arr[i]; }
+#define VC vector
+#define CLR(arr) memset(arr,0,sizeof(arr))
+#define FILL(arr,val) memset(arr,val,sizeof(arr))
+using namespace std;
+#define i64  long long
+#define lim 101
+long long _pow(long long a,long long b) {
+if(!b) return 1;
+if(b == 1) return a;
+if(b == 2) return (a*a)%M;
+if(b&1) return (a*_pow(a,b-1))%M;
+return _pow(_pow(a,b/2),2);
+}
+ int main(){
+ 		int t;
+ 		scanf("%d",&t);
+ 		while(t--){
+ 		
+ 		i64 V,N,p[lim],q[lim],A0,A1,B0,B1,C0,C1,M0,M1,L[lim];
+ 		FILL(L,0);
+ 		scanf("%lld%lld",&V,&N);
+ 		scanf("%lld%lld%lld%lld%lld%lld",&p[0],&p[1],&A0,&B0,&C0,&M0);
+ 		scanf("%lld%lld%lld%lld%lld%lld",&q[0],&q[1],&A1,&B1,&C1,&M1);
+ 		for(int i=2;i<N;i++){
+ 			p[i]=A0 * A0 * p[i-1] + B0 * p[i-2] + C0 % M0;
+			q[i]=A1 * A1 * q[i-1] + B1 * q[i-2] + C1 % M1;	}
+		
+		for(int i=0;i<N;i++)
+		L[i] = p[i]*(M1)+q[i]+1;
+		for(int i=0;i<N;i++)
+		long long int prod = 1;
+for(int i = 0; i < n; i++) {
+prod = (prod * ((L[i]-1)%M1)) % M1;
+}
+if(!prod) {
+int flag = 0;
+rep(i,0,n) if(L[i] == 1ll) flag = 1;
+if(flag) {
+printf("1\n");
+continue;
+}
+if(v%M == 0) {
+printf("0\n");
+continue;
+}
+}
+//assert(prod>=0 && prod<M1);
+long long ans = _pow(v%M,prod);
+assert(ans >= 0 && ans < M);
+printf("%lld\n",ans);
+}
+return 0;
+}
+
+		
+		
+		
+		
+	
+		
+		
+			
+			
+			 		
+ 		

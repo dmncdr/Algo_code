@@ -1,0 +1,16 @@
+#include<iostream>
+#include<cstdio>
+int main(){
+		int t;
+		cin>>t;
+			while(t--){
+					double s,n,m,k;
+					cin>>s>>n>>m>>k;
+					
+					if(n<=k)
+					cout<<"0.000000\n";
+					else if((s-n)<(m-k))
+					cout<<"1.000000\n";
+					
+					
+						

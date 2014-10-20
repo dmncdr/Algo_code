@@ -1,0 +1,96 @@
+#include<cstdio>
+#include<algorithm>
+#include<vector>
+using namespace std;
+struct nodi{
+	long int firsti;
+	long int secondi;
+};
+vector<nodi> vec;
+vector<int>ind;
+
+long int pos[100002],con[400008];
+long int n,p,k,i;
+vector<int>::iterator it1,it2;
+long int maxi(long int a,long int b){ return a>b?a:b;}
+long int mini(long int a,long int b){ return a>b?b:a;}
+
+void build(long int node,long int con[],long int a[],long int st,long int end){
+	if(st==end) { con[node]=a[st]; return;}
+	else{
+		build(2*node,con,a,st,(st+end)/2);
+		build(2*node+1,con,a,(st+end)/2+1,end);
+		con[node]=max(con[2*node],con[2*node+1]);
+		return ;
+	}
+}
+
+long int query(long int node,long int con[],long int b,long int e,long int st,long int end){
+	if(e<st || b>end) return -999999999;
+	else if(b<=st && e>=end) return con[node];
+	else{
+		return max(query(2*node,con,b,e,st,(st+end)/2),query(2*node+1,con,b,e,(st+end)/2+1,end));
+	}
+}
+		
+bool compare( const nodi &a,const nodi &b){
+	return a.firsti<b.firsti;
+}
+
+
+ int main(){
+ 	
+	scanf("%ld%ld%ld",&n,&k,&p);
+	for(i=0;i<n;i++){ long int x; scanf("%ld",&x);nodi tmp;tmp.firsti=x;tmp.secondi=i;vec.push_back(tmp);}
+	
+	sort(vec.begin(),vec.end(),compare);
+	for(int j=1;j<n;j++) printf("%ld ",vec[j].firsti);
+	printf("\n");
+	ind.push_back(vec[0].secondi);
+	
+	for(i=1;i<n;i++){ pos[i]=vec[i].firsti-vec[i-1].firsti;ind.push_back(vec[i].secondi);}
+	
+	build(1,con,pos,0,n-1);
+
+	for(i=0;i<p;i++){
+		long int x1,x2,i1,i2;
+		scanf("%ld%ld",&x1,&x2);
+		x1=x1-1;
+		x2=x2-1;
+		it1=find(ind.begin(),ind.end(),x1);
+		it2=find(ind.begin(),ind.end(),x2);
+		i1=mini(it1-ind.begin(),it2-ind.begin());
+		i2=maxi(it1-ind.begin(),it2-ind.begin());
+		if(i1!=i2){
+			long int val=query(1,con,i1+1,i2,0,n-1);
+			if(val>k)
+				printf("No\n");
+			else printf("Yes\n");
+		}
+		else{
+			printf("Yes\n");
+		}
+	
+	}
+	
+	return 0;
+}
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+	

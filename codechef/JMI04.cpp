@@ -1,0 +1,20 @@
+#include<iostream>
+using namespace std;
+int main(){
+	int arr[28],i;
+	arr[1]=1;
+	arr[2]=2;
+	for(i=3;i<=29;i++) arr[i]=arr[i-1]+arr[i-2];
+	int t;
+	cin>>t;
+	while(t--){
+		int n;
+		cin>>n;
+		int f=0;
+		
+		for(i=1;i<=29;i++){ if(n==arr[i]){ f=1; break;}}
+		if(f==1) cout<<"Yes\n";
+		else cout<<"No\n";
+	}
+	return 0;
+}

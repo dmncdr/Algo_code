@@ -1,0 +1,8 @@
+#include<iostream>
+#include<cstdlib>
+using namespace std;
+int main(){
+	int t;
+	t=rand()%50;
+	while(t--){
+		

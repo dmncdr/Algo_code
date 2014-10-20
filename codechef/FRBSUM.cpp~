@@ -1,0 +1,17 @@
+#include<iostream>
+#include<cstdio>
+#include<vector>
+#include<algorithm>
+using namespace std;
+
+int A[100002];
+int con[100002];
+vector<int> qu[400002],su[400002];
+
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		int  n;
+		int a[
+		
